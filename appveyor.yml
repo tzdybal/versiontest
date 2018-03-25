@@ -8,5 +8,8 @@ install:
 
   # Install janus.
 build_script:
+  - go env
   - go build -ldflags "-X main.Version=0.0.1"
+  - versiontest
+  - go build -ldflags '-X main.Version=0.0.1'
   - versiontest
