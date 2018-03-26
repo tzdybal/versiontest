@@ -4,6 +4,7 @@ os: Visual Studio 2015
 environment:
   GOPATH: c:\gopath
 build_script:
+  - cd
   - go env
   - go build -ldflags "-X main.Version=0.0.1"
   - versiontest
@@ -13,3 +14,9 @@ build_script:
   - go clean -r -i
   - go install -ldflags "-X main.Version=0.0.1"
   - '%GOPATH%\bin\versiontest.exe'
+  - go clean -r -i
+  - go build -ldflags "-X main.Version=test" github.com/tzdybal/versiontest
+  - versiontest
+  - go clean -r -i
+  - go build -ldflags="-X main.Version=0.0.1"
+  - versiontest
