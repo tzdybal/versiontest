@@ -3,13 +3,11 @@ clone_folder: c:\gopath\src\github.com\tzdybal\versiontest
 os: Visual Studio 2015
 environment:
   GOPATH: c:\gopath
-install:
-  - set PATH=%GOPATH%\bin;c:\go\bin;C:\msys64\mingw64\bin;C:\msys64\usr\bin\;%PATH%
-
-  # Install janus.
 build_script:
   - go env
   - go build -ldflags "-X main.Version=0.0.1"
   - versiontest
-  - go build -ldflags '-X main.Version=0.0.1'
-  - versiontest
+  - go clean -r -i
+  - go get -ldflags "-X main.Version=0.0.1" github.com/tzdybal/versiontest
+  - '%GOPATH%\bin\versiontest.exe'
+
